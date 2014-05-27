@@ -1,7 +1,7 @@
 <?php
 
 class FAV_Directory_Display{
-    public $event_post_type = 'rns_directory';
+    public $listing_post_type = 'rns_directory';
 
     function __construct(){
         add_action('template_redirect', array($this, 'add_filters'));
@@ -9,7 +9,7 @@ class FAV_Directory_Display{
 
     function add_filters(){
         global $post;
-        if(get_post_type() == $this->event_post_type){
+        if(get_post_type() == $this->listing_post_type && is_single() ){
             //now do the magic sauce
             add_action('the_content', array($this, 'output_meta_display'));
             add_filter('rns_directory_before_content', array($this, 'before_content_directory_data'));
